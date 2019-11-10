@@ -27,7 +27,7 @@ public class Downloader {
     }
 
     public static URL getLanguageServerURL() throws IOException {
-        return getLatestGithubRelease("zhangjiangqige", "checker-framework-languageserver");
+        return getLatestGithubRelease("eisopux", "checker-framework-languageserver");
     }
 
     public static URL getCheckerFrameworkURL() throws IOException {
