@@ -18,15 +18,19 @@ public class DownloaderMain {
             System.err.println("The path provided is not a folder: " + args[0]);
         }
 
+        BaseDownloader d;
+
         try {
-            File f = Downloader.downloadLanguageServer(folder);
+            d = new LanguageServerDownloader(folder);
+            File f = d.download();
             System.out.println("Got " + f.getAbsolutePath());
         } catch (IOException e) {
 
         }
 
         try {
-            File f = Downloader.downloadCheckerFramework(folder);
+            d = new CheckerFrameworkDownloader(folder);
+            File f = d.download();
             System.out.println("Got " + f.getAbsolutePath());
         } catch (IOException e) {
 
