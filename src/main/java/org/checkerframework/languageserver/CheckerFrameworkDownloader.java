@@ -9,11 +9,11 @@ import java.nio.file.Paths;
 
 public class CheckerFrameworkDownloader extends BaseDownloader {
     public CheckerFrameworkDownloader(File folder) {
-        this("typetools", "checker-framework", folder);
+        this(folder, "typetools", "checker-framework");
     }
 
-    public CheckerFrameworkDownloader(String author, String repo, File folder) {
-        super(author, repo, folder);
+    public CheckerFrameworkDownloader(File folder, String org, String repo) {
+        super(org, repo, folder);
     }
 
     private File getUnzipped() throws IOException {

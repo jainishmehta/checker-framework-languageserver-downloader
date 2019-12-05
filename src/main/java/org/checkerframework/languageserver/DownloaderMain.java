@@ -3,37 +3,63 @@
  */
 package org.checkerframework.languageserver;
 
+import org.apache.commons.cli.*;
+
 import java.io.File;
-import java.io.IOException;
 
 public class DownloaderMain {
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.out.println("args: path-to-a-folder");
-            System.exit(1);
+    private static final String OPT_DESTINATION = "dest";
+    private static final String OPT_CHECKERFRAMEWORK_ORG = "checkerframework_org";
+    private static final String OPT_CHECKERFRAMEWORK_REPO = "checkerframework_repo";
+    private static final String OPT_LANGUAGESERVER_ORG = "languageserver_org";
+    private static final String OPT_LANGUAGESERVER_REPO = "languageserver_repo";
+
+    public static void main(String[] args) throws Exception {
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd;
+
+        cmd = parser.parse(getOptions(), args);
+
+        String dir = cmd.getOptionValue(OPT_DESTINATION);
+        String cf_org = "typetools", cf_repo = "checker-framework";
+        String ls_org = "eisopux", ls_repo = "checker-framework-languageserver";
+
+        if (cmd.hasOption(OPT_CHECKERFRAMEWORK_ORG)) {
+            cf_org = cmd.getOptionValue(OPT_CHECKERFRAMEWORK_ORG);
+        }
+        if (cmd.hasOption(OPT_CHECKERFRAMEWORK_REPO)) {
+            cf_repo = cmd.getOptionValue(OPT_CHECKERFRAMEWORK_REPO);
+        }
+        if (cmd.hasOption(OPT_LANGUAGESERVER_ORG)) {
+            ls_org = cmd.getOptionValue(OPT_LANGUAGESERVER_ORG);
+        }
+        if (cmd.hasOption(OPT_LANGUAGESERVER_REPO)) {
+            ls_repo = cmd.getOptionValue(OPT_LANGUAGESERVER_REPO);
         }
 
-        File folder = new File(args[0]);
+        File folder = new File(dir);
         if (!folder.isDirectory()) {
-            System.err.println("The path provided is not a folder: " + args[0]);
+            System.err.println("The path provided is not a folder: " + dir);
         }
 
         BaseDownloader d;
 
-        try {
-            d = new LanguageServerDownloader(folder);
-            File f = d.download();
-            System.out.println("Got " + f.getAbsolutePath());
-        } catch (IOException e) {
+        d = new LanguageServerDownloader(folder, ls_org, ls_repo);
+        File f = d.download();
+        System.out.println("Got " + f.getAbsolutePath());
 
-        }
+        d = new CheckerFrameworkDownloader(folder, cf_org, cf_repo);
+        f = d.download();
+        System.out.println("Got " + f.getAbsolutePath());
+    }
 
-        try {
-            d = new CheckerFrameworkDownloader(folder);
-            File f = d.download();
-            System.out.println("Got " + f.getAbsolutePath());
-        } catch (IOException e) {
-
-        }
+    private static Options getOptions() {
+        Options options = new Options();
+        options.addRequiredOption(OPT_DESTINATION, OPT_DESTINATION, true, "directory to place downloaded files");
+        options.addOption(OPT_CHECKERFRAMEWORK_ORG, OPT_CHECKERFRAMEWORK_ORG, true, "the organziation of Checker Framework to download; default to typetools");
+        options.addOption(OPT_CHECKERFRAMEWORK_REPO, OPT_CHECKERFRAMEWORK_REPO, true, "the repository of Checker Framework to download; default to checker-framework");
+        options.addOption(OPT_LANGUAGESERVER_ORG, OPT_LANGUAGESERVER_ORG, true, "the organziation of language server to download; default to eisopux");
+        options.addOption(OPT_LANGUAGESERVER_REPO, OPT_LANGUAGESERVER_REPO, true, "the repository of language server to download; default to checker-framework-languageserver");
+        return options;
     }
 }
