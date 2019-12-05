@@ -30,7 +30,7 @@ This specifies from which Github organization to download the language server. T
 
 This specifies from which Github repository under `languageserver_org` to download the language server. The default is `checker-framework-languageserver`.
 
-Combined with `languageserver_org`, the default Checker Framework is `checker-framework-languageserver`.
+Combined with `languageserver_org`, the default language server is `eisopux/checker-framework-languageserver`.
 
 ## Example
 
