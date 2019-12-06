@@ -50,3 +50,9 @@ java \
 -dest /some/env/ \
 -checkerframework_org eisop
 ```
+
+## Development notes
+
+TODO: other build instructions?
+
+To format the source code, run `$ ./gradlew goJF`.
