@@ -3,9 +3,8 @@
  */
 package org.checkerframework.languageserver;
 
-import org.apache.commons.cli.*;
-
 import java.io.File;
+import org.apache.commons.cli.*;
 
 public class DownloaderMain {
     private static final String OPT_DESTINATION = "dest";
@@ -55,11 +54,28 @@ public class DownloaderMain {
 
     private static Options getOptions() {
         Options options = new Options();
-        options.addRequiredOption(OPT_DESTINATION, OPT_DESTINATION, true, "directory to place downloaded files");
-        options.addOption(OPT_CHECKERFRAMEWORK_ORG, OPT_CHECKERFRAMEWORK_ORG, true, "the organziation of Checker Framework to download; default to typetools");
-        options.addOption(OPT_CHECKERFRAMEWORK_REPO, OPT_CHECKERFRAMEWORK_REPO, true, "the repository of Checker Framework to download; default to checker-framework");
-        options.addOption(OPT_LANGUAGESERVER_ORG, OPT_LANGUAGESERVER_ORG, true, "the organziation of language server to download; default to eisopux");
-        options.addOption(OPT_LANGUAGESERVER_REPO, OPT_LANGUAGESERVER_REPO, true, "the repository of language server to download; default to checker-framework-languageserver");
+        options.addRequiredOption(
+                OPT_DESTINATION, OPT_DESTINATION, true, "directory to place downloaded files");
+        options.addOption(
+                OPT_CHECKERFRAMEWORK_ORG,
+                OPT_CHECKERFRAMEWORK_ORG,
+                true,
+                "the organziation of Checker Framework to download; default to typetools");
+        options.addOption(
+                OPT_CHECKERFRAMEWORK_REPO,
+                OPT_CHECKERFRAMEWORK_REPO,
+                true,
+                "the repository of Checker Framework to download; default to checker-framework");
+        options.addOption(
+                OPT_LANGUAGESERVER_ORG,
+                OPT_LANGUAGESERVER_ORG,
+                true,
+                "the organziation of language server to download; default to eisopux");
+        options.addOption(
+                OPT_LANGUAGESERVER_REPO,
+                OPT_LANGUAGESERVER_REPO,
+                true,
+                "the repository of language server to download; default to checker-framework-languageserver");
         return options;
     }
 }

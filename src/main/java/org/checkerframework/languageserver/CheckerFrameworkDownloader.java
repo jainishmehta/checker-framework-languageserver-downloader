@@ -1,11 +1,10 @@
 package org.checkerframework.languageserver;
 
-import net.lingala.zip4j.ZipFile;
-import org.apache.commons.io.FilenameUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import net.lingala.zip4j.ZipFile;
+import org.apache.commons.io.FilenameUtils;
 
 public class CheckerFrameworkDownloader extends BaseDownloader {
     public CheckerFrameworkDownloader(File folder) {
@@ -19,7 +18,8 @@ public class CheckerFrameworkDownloader extends BaseDownloader {
     private File getUnzipped() throws IOException {
         File dest = getDestination();
         String cfzip = dest.getAbsolutePath();
-        return Paths.get(FilenameUtils.getFullPath(cfzip), FilenameUtils.getBaseName(cfzip)).toFile();
+        return Paths.get(FilenameUtils.getFullPath(cfzip), FilenameUtils.getBaseName(cfzip))
+                .toFile();
     }
 
     @Override

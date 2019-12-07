@@ -3,10 +3,6 @@ package org.checkerframework.languageserver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -14,8 +10,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
-abstract public class BaseDownloader {
+public abstract class BaseDownloader {
     String author;
     String repo;
     File folder;
@@ -27,8 +26,9 @@ abstract public class BaseDownloader {
     }
 
     public File download() throws IOException {
-        if (!exists())
+        if (!exists()) {
             return doDownload();
+        }
         return getDestination();
     }
 
@@ -54,7 +54,10 @@ abstract public class BaseDownloader {
 
     // returns the File object corresponding to a file if it's successful downloaded
     public File getDestination() throws IOException {
-        Path dest = Paths.get(folder.getAbsolutePath(), FilenameUtils.getName(getLatestGitHubReleaseAsset().getPath()));
+        Path dest =
+                Paths.get(
+                        folder.getAbsolutePath(),
+                        FilenameUtils.getName(getLatestGitHubReleaseAsset().getPath()));
         return dest.toFile();
     }
 

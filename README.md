@@ -50,3 +50,19 @@ java \
 -dest /some/env/ \
 -checkerframework_org eisop
 ```
+
+## Development notes
+
+To build the project, run
+
+```shell
+./gradlew shadowJar
+```
+
+and then `checker-framework-languageserver-downloader-all.jar` will be generated under `build/libs`.
+
+To format the source code, run `$ ./gradlew goJF`.
+
+When adding a new downloader for some new dependency, please inherit `BaseDownloader` and overwrite methods that you wish to change. We assume that the dependency can be downloaded as a release asset from Github, and by default the first file will be downloaded.
+
+After this, add arguments to `DownloaderMain`, and instantiate/call your new class there.
