@@ -42,8 +42,7 @@ public abstract class BaseDownloader {
 
     public JsonElement getLatestGitHubRelease() throws IOException {
         String json = IOUtils.toString(getLatestGitHubReleaseURL(), StandardCharsets.UTF_8.name());
-        JsonParser jp = new JsonParser();
-        return jp.parse(json);
+        return JsonParser.parseString(json);
     }
 
     public URL getLatestGitHubReleaseAsset() throws IOException {
