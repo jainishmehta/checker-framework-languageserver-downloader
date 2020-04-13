@@ -10,24 +10,23 @@ the latest versions of them, so the actual plugins for editors/IDEs can focus
 more on editor-specific functions.
 
 
-## Arguments
+## Command-line Arguments
 
 Note: when setting the organization/repo of the Checker Framework Language
 Server, it is required that **the targeted repository makes releases containing
 the distribution zip file of the Checker Framework and a jar file of the
 CF Language Server**.
 
-### dest
+### Required: `dest`
 
-Required. This is a path to a folder that will be used to store the downloaded
-files.
+This is the path to where downloaded files will be stored.
 
-### checkerframework_org
+### Optional: `checkerframework_org`
 
 This specifies from which GitHub organization to download the Checker Framework.
 The default is `typetools`.
 
-### checkerframework_repo
+### Optional: `checkerframework_repo`
 
 This specifies from which GitHub repository under `checkerframework_org` to
 download the Checker Framework. The default is `checker-framework`.
@@ -35,12 +34,12 @@ download the Checker Framework. The default is `checker-framework`.
 Combined with `checkerframework_org`, the default Checker Framework is
 `typetools/checker-framework`.
 
-### languageserver_org
+### Optional: `languageserver_org`
 
 This specifies from which GitHub organization to download the CF Language
 Server. The default is `eisopux`.
 
-### languageserver_repo
+### Optional: `languageserver_repo`
 
 This specifies from which GitHub repository under `languageserver_org` to
 download the CF Language Server. The default is
@@ -73,14 +72,13 @@ java \
 
 ## Development notes
 
-To build the project, run
+Run
 
 ```shell
-./gradlew shadowJar
+./gradlew assemble
 ```
 
-and then `checker-framework-languageserver-downloader-all.jar` will be generated
-under `build/libs`.
+to build `build/libs/checker-framework-languageserver-downloader-all.jar`.
 
 To format the source code, run `$ ./gradlew spotlessApply`.
 
