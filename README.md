@@ -82,7 +82,7 @@ To build the project, run
 and then `checker-framework-languageserver-downloader-all.jar` will be generated
 under `build/libs`.
 
-To format the source code, run `$ ./gradlew goJF`.
+To format the source code, run `$ ./gradlew spotlessApply`.
 
 When adding a new downloader for some new dependency, please inherit
 `BaseDownloader` and overwrite methods that you wish to change. We assume that
