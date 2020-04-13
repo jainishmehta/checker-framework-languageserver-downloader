@@ -7,11 +7,7 @@ import net.lingala.zip4j.ZipFile;
 import org.apache.commons.io.FilenameUtils;
 
 public class CheckerFrameworkDownloader extends BaseDownloader {
-    public CheckerFrameworkDownloader(File folder) {
-        this(folder, "typetools", "checker-framework");
-    }
-
-    public CheckerFrameworkDownloader(File folder, String org, String repo) {
+    public CheckerFrameworkDownloader(String org, String repo, File folder) {
         super(org, repo, folder);
     }
 

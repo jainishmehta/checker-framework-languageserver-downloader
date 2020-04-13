@@ -15,12 +15,12 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 public abstract class BaseDownloader {
-    String author;
-    String repo;
-    File folder;
+    protected final String org;
+    protected final String repo;
+    protected final File folder;
 
-    public BaseDownloader(String author, String repo, File folder) {
-        this.author = author;
+    public BaseDownloader(String org, String repo, File folder) {
+        this.org = org;
         this.repo = repo;
         this.folder = folder;
     }
@@ -37,7 +37,7 @@ public abstract class BaseDownloader {
     }
 
     public URL getLatestGitHubReleaseURL() throws MalformedURLException {
-        return new URL("https://api.github.com/repos/" + author + "/" + repo + "/releases/latest");
+        return new URL("https://api.github.com/repos/" + org + "/" + repo + "/releases/latest");
     }
 
     public JsonElement getLatestGitHubRelease() throws IOException {
