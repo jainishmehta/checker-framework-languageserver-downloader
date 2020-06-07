@@ -19,7 +19,7 @@ public abstract class BaseDownloader {
     protected final String repo;
     protected final File folder;
 
-    public BaseDownloader(String org, String repo, File folder) {
+    protected BaseDownloader(String org, String repo, File folder) {
         this.org = org;
         this.repo = repo;
         this.folder = folder;
