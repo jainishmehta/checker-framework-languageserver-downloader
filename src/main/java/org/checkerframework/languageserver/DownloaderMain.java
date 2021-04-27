@@ -45,7 +45,7 @@ public class DownloaderMain {
         if (!folder.isDirectory()) {
             System.err.println("The path provided is not a folder: " + dir);
         }
-
+        //Other tools might pass this output, such as the VSCode plugin, and should be handled appropriately
         BaseDownloader d = new LanguageServerDownloader(ls_org, ls_repo, folder);
         File f = d.download();
         System.out.println("Got language server: " + f.getAbsolutePath());
